@@ -3,3 +3,4 @@ module.allow_web_admin=${MODULE_WEB_ADMIN}
 connection.username=${DB_USERNAME}
 auto_update_database=${DB_AUTO_UPDATE}
 connection.password=${DB_PASSWORD}
+hibernate.jdbc.time_zone=${OMRS_HIBERNATE_JDBC_TIME_ZONE}

@@ -3,6 +3,11 @@ FROM openmrs/openmrs-core:2.5.14
 ENV JMX_PROMETHEUS_JAVAAGENT_VERSION=0.18.0
 ENV OPENMRS_APPLICATION_DATA_DIRECTORY=/openmrs/data
 ENV OMRS_DB_EXTRA_ARGS="&zeroDateTimeBehavior=convertToNull"
+# OpenMRS mantiene la zona clinica de Chile, pero Hibernate debe entregar un
+# Calendar explicito a JDBC. Sin esto Connector/J crea uno estricto a medianoche
+# y no puede leer fechas DATE cuyo dia comenzo a la 01:00 por DST (por ejemplo
+# 1990-09-16 en America/Santiago: HOUR_OF_DAY 0 -> 1).
+ENV OMRS_HIBERNATE_JDBC_TIME_ZONE=America/Santiago
 
 USER root
 
