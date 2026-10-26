@@ -28,7 +28,7 @@
         <bedManagementVersion>6.0.0</bedManagementVersion>
         <calculationVersion>1.3.0</calculationVersion>
         <emrapiModuleVersion>1.36.0</emrapiModuleVersion>
-        <episodesVersion>1.1.0</episodesVersion>
+        <episodesVersion>2.0.0</episodesVersion>
         <eventModuleVersion>2.10.0</eventModuleVersion>
         <owaVersion>1.14.0</owaVersion>
         <htmlwidgetsVersion>1.11.0</htmlwidgetsVersion>
@@ -56,7 +56,10 @@
              la cita reprogramada. La linea 2.x (2.2.0-chile-hm-1) ya no se usa. -->
         <appointmentsVersion>3.0.1-chile</appointmentsVersion>
         <pacsQueryVersion>1.4.0</pacsQueryVersion>
-        <fhir2ModuleVersion>2.1.0</fhir2ModuleVersion>
+        <!-- fhir2 2.5.1 en modo servidor, con episodes 2.0.0 y fhir2addlextension 1.0.0: el POST
+             /ws/fhir2/R4/EncounterBundle de la GUI React los necesita. -->
+        <fhir2ModuleVersion>2.5.1</fhir2ModuleVersion>
+        <fhir2AddlExtensionModuleVersion>1.0.0</fhir2AddlExtensionModuleVersion>
         <fhir2ExtensionModuleVersion>1.3.1</fhir2ExtensionModuleVersion>
         <openConceptLabVersion>2.3.0</openConceptLabVersion>
         <initializerModuleVersion>2.7.0</initializerModuleVersion>
@@ -334,6 +337,12 @@
             <groupId>org.bahmni.module</groupId>
             <artifactId>fhir2Extension-omod</artifactId>
             <version>${fhir2ExtensionModuleVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bahmni.module</groupId>
+            <artifactId>fhir2addlextension-omod</artifactId>
+            <version>${fhir2AddlExtensionModuleVersion}</version>
         </dependency>
 
         <dependency>
