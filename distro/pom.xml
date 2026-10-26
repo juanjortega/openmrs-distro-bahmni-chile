@@ -20,7 +20,7 @@
         <atomfeedModuleVersion>2.6.3</atomfeedModuleVersion>
         <bacteriologyVersion>1.3.0</bacteriologyVersion>
         <auditLogVersion>1.3.0</auditLogVersion>
-        <!-- FORK CHILE: version propia publicada en GitHub Packages (healthmeshchile).
+        <!-- FORK CHILE: version propia publicada en GitHub Packages (juanjortega).
              Sustituye a la 1.2.0 de Bahmni; no conviven, es la misma coordenada con
              otra version, asi que el glob del Dockerfile sigue recogiendo un solo omod. -->
         <bahmniCoreVersion>1.2.0-chile-hm-2</bahmniCoreVersion>
@@ -51,9 +51,10 @@
         <webServicesRestVersion>2.44.0</webServicesRestVersion>
         <reportingRestVersion>1.14.0</reportingRestVersion>
         <bahmniIEOmodVersion>1.4.0</bahmniIEOmodVersion>
-        <!-- FORK CHILE. Ojo con el salto 2.0.2 -> 2.2.0: el fork no sale del tag 2.0.2
-             sino del master de upstream, que ya declaraba 2.2.0-SNAPSHOT. -->
-        <appointmentsVersion>2.2.0-chile-hm-1</appointmentsVersion>
+        <!-- FORK CHILE: agenda 3.0 (horario por profesional, retencion de cupo, modulo clinico por
+             servicio). No la 3.0.0-chile: deja sin uuid
+             la cita reprogramada. La linea 2.x (2.2.0-chile-hm-1) ya no se usa. -->
+        <appointmentsVersion>3.0.1-chile</appointmentsVersion>
         <pacsQueryVersion>1.4.0</pacsQueryVersion>
         <fhir2ModuleVersion>2.1.0</fhir2ModuleVersion>
         <fhir2ExtensionModuleVersion>1.3.1</fhir2ExtensionModuleVersion>
@@ -400,7 +401,7 @@
     <repositories>
         <!-- ============ GitHub Packages: los modulos de Chile ==================
              GitHub Packages sirve por REPOSITORIO, no por organizacion: no existe
-             una URL que agrupe todos los paquetes de healthmeshchile, asi que hay
+             una URL que agrupe todos los paquetes de juanjortega, asi que hay
              una entrada por repo de origen. Van PRIMERO para que Maven no gaste un
              404 contra Sonatype y Bahmni antes de encontrarlas.
 
@@ -416,37 +417,37 @@
              ==================================================================== -->
         <repository>
             <id>ghp-bahmni-core-chile</id>
-            <url>https://maven.pkg.github.com/healthmeshchile/bahmni-core-chile</url>
+            <url>https://maven.pkg.github.com/juanjortega/bahmni-core-chile</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
         <repository>
             <id>ghp-appointments-chile</id>
-            <url>https://maven.pkg.github.com/healthmeshchile/openmrs-module-appointments-chile</url>
+            <url>https://maven.pkg.github.com/juanjortega/openmrs-module-appointments-chile</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
         <repository>
             <id>ghp-oauth2login</id>
-            <url>https://maven.pkg.github.com/healthmeshchile/openmrs-module-oauth2login</url>
+            <url>https://maven.pkg.github.com/juanjortega/openmrs-module-oauth2login</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
         <repository>
             <id>ghp-eis-identity</id>
-            <url>https://maven.pkg.github.com/healthmeshchile/openmrs-module-eis-identity</url>
+            <url>https://maven.pkg.github.com/juanjortega/openmrs-module-eis-identity-chile</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
         <repository>
             <id>ghp-interconsulta</id>
-            <url>https://maven.pkg.github.com/healthmeshchile/openmrs-module-interconsulta</url>
+            <url>https://maven.pkg.github.com/juanjortega/openmrs-module-interconsulta-chile</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
         <repository>
             <id>ghp-provider-signature</id>
-            <url>https://maven.pkg.github.com/healthmeshchile/openmrs-module-provider-signature</url>
+            <url>https://maven.pkg.github.com/juanjortega/openmrs-module-provider-signature</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>

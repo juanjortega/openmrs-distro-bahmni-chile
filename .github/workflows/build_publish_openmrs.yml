@@ -4,6 +4,7 @@ on:
     branches:
       - master
       - 'release-*'
+      - release/chile
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
     paths-ignore:
@@ -16,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: read     # resolver los omod de Chile desde GitHub Packages
+      packages: write    # leer los omod de Chile y publicar la imagen en ghcr.io/juanjortega
     env:
       HELM_CHART_PATH: package/helm/openmrs
     steps:
@@ -102,59 +103,35 @@ jobs:
         env:
           USER_NAME: ${{ secrets.USERNAME }}
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - name: Login to DockerHub
+      # La imagen va a GitHub Packages de juanjortega (ghcr.io/juanjortega/openmrs-chile), el mismo
+      # dueno que los modulos: el GITHUB_TOKEN del workflow basta para publicarla y no hace falta
+      # ninguna cuenta de otro registro. Solo amd64: es lo que corre en los servidores, y el build de
+      # arm64 bajo QEMU duplicaba el tiempo.
+      - name: Login a ghcr.io
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Docker Build and push
         uses: docker/build-push-action@v3
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           file: package/docker/openmrs/Dockerfile
           push: true
-          tags: healthmeshgroup/openmrs-hm:${{ env.ARTIFACT_VERSION }},healthmeshgroup/openmrs-hm:latest
+          tags: |
+            ghcr.io/juanjortega/openmrs-chile:${{ env.ARTIFACT_VERSION }}
+            ghcr.io/juanjortega/openmrs-chile:latest
           # Etiquetas OCI: la imagen se describe a si misma. Sin esto, saber de que
           # commit sale una imagen publicada exige adivinar por fechas. `revision` es
           # lo que permite sacar el merge-base contra el upstream y medir la divergencia.
           labels: |
-            org.opencontainers.image.title=openmrs-hm
+            org.opencontainers.image.title=openmrs-chile
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.version=${{ env.ARTIFACT_VERSION }}
-            cl.healthmesh.upstream.repo=Bahmni/openmrs-distro-bahmni
-      - name: Update Version and Image Tag
-        run: |
-          yq --inplace '.image.tag = "${{ env.ARTIFACT_VERSION }}"' $HELM_CHART_PATH/values.yaml
-          yq --inplace '.version = "${{ env.ARTIFACT_VERSION }}"' $HELM_CHART_PATH/Chart.yaml
-      - name: Helm Lint
-        run: helm lint $HELM_CHART_PATH
-
-      - name: Helm Package
-        run: helm package $HELM_CHART_PATH
-
-      # Chart como artefacto OCI, al mismo registro que las imagenes.
-      #
-      # SUSTITUYE al modelo de Bahmni (gh-pages + 'helm repo index'), que sirve el
-      # repositorio de charts como sitio web y por tanto exige que sea PUBLICO:
-      # GitHub Pages no publica repositorios privados. Con OCI la visibilidad se
-      # controla por artefacto y no hacen falta ni gh-pages ni index.yaml.
-      #
-      # El nombre del repositorio OCI lo deriva helm del <name> del Chart.yaml. Por eso
-      # el chart se llama 'openmrs-hm-chart' y no igual que la imagen: ambos usan la
-      # MISMA ARTIFACT_VERSION, asi que compartir repositorio haria que la etiqueta de
-      # uno sobrescribiera la del otro.
-      - name: Publicar el chart como artefacto OCI
-        env:
-          DOCKER_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
-          DOCKER_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-        run: |
-          tgz=$(ls -1 *.tgz | head -1)
-          if [ -z "$tgz" ]; then echo 'no se empaqueto ningun chart'; exit 1; fi
-          echo "$DOCKER_TOKEN" | helm registry login registry-1.docker.io -u "$DOCKER_USER" --password-stdin
-          helm push "$tgz" oci://registry-1.docker.io/healthmeshgroup
+      # Sin chart de Helm: la imagen se despliega con docker compose, y el chart se publicaba en un
+      # registro ajeno.
