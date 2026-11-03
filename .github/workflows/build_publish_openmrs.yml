@@ -87,7 +87,7 @@ jobs:
           mkdir -p ~/.m2
           {
             echo '<settings><servers>'
-            for id in ghp-bahmni-core-chile ghp-appointments-chile ghp-oauth2login                       ghp-eis-identity ghp-interconsulta ghp-provider-signature; do
+            for id in ghp-bahmni-core-chile ghp-appointments-chile ghp-oauth2login                       ghp-eis-identity ghp-interconsulta ghp-provider-signature ghp-fhir-diagnosticos; do
               echo "  <server><id>${id}</id><username>${GH_ACTOR}</username><password>${GH_TOKEN}</password></server>"
             done
             echo '</servers></settings>'
