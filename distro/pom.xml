@@ -82,6 +82,9 @@
         <eisIdentityVersion>0.1.0</eisIdentityVersion>
         <interconsultaVersion>0.1.0</interconsultaVersion>
         <providerSignatureVersion>0.1.0</providerSignatureVersion>
+        <!-- Diagnosticos de Bahmni como FHIR Condition (encounter-diagnosis). Antes se copiaba a mano en
+             /openmrs/data/modules del .115 y se perdia al recrear el contenedor. -->
+        <fhirDiagnosticosVersion>0.2.1</fhirDiagnosticosVersion>
         <!-- Varias terminologias en un diccionario (CIEL, SNOMED CT, CIE-10, locales). Antes se copiaba a
              mano en /openmrs/data/modules del .115 y se perdia al recrear el contenedor. -->
         <multisourceTerminologyVersion>0.1.0</multisourceTerminologyVersion>
@@ -326,6 +329,12 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
+            <artifactId>fhirdiagnosticos-omod</artifactId>
+            <version>${fhirDiagnosticosVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
             <artifactId>multisourceterminology-omod</artifactId>
             <version>${multisourceTerminologyVersion}</version>
         </dependency>
@@ -466,6 +475,12 @@
         <repository>
             <id>ghp-provider-signature</id>
             <url>https://maven.pkg.github.com/juanjortega/openmrs-module-provider-signature</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>ghp-fhir-diagnosticos</id>
+            <url>https://maven.pkg.github.com/juanjortega/openmrs-module-fhir-diagnosticos</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>

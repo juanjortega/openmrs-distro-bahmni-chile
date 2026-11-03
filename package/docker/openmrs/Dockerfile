@@ -71,12 +71,13 @@ COPY distro/target/distro/fhir-cdss-int-*.omod  ${OPENMRS_APPLICATION_DATA_DIREC
 # comodin sigue recogiendo exactamente uno y no queda el omod de stock que
 # reemplazan.
 #
-# Estos cuatro si son adicionales: oauth2login (fork, antes se montaba por
-# bind-mount) y los tres propios.
+# Estos si son adicionales: oauth2login (fork, antes se montaba por bind-mount)
+# y los propios.
 COPY distro/target/distro/oauth2login*.omod  ${OPENMRS_APPLICATION_DATA_DIRECTORY}/modules
 COPY distro/target/distro/eisidentity*.omod  ${OPENMRS_APPLICATION_DATA_DIRECTORY}/modules
 COPY distro/target/distro/interconsulta*.omod  ${OPENMRS_APPLICATION_DATA_DIRECTORY}/modules
 COPY distro/target/distro/provider-signature*.omod  ${OPENMRS_APPLICATION_DATA_DIRECTORY}/modules
+COPY distro/target/distro/fhirdiagnosticos*.omod  ${OPENMRS_APPLICATION_DATA_DIRECTORY}/modules
 COPY distro/target/distro/multisourceterminology*.omod  ${OPENMRS_APPLICATION_DATA_DIRECTORY}/modules
 
 # Copy Configuration Files
