@@ -82,6 +82,9 @@
         <eisIdentityVersion>0.1.0</eisIdentityVersion>
         <interconsultaVersion>0.1.0</interconsultaVersion>
         <providerSignatureVersion>0.1.0</providerSignatureVersion>
+        <!-- Varias terminologias en un diccionario (CIEL, SNOMED CT, CIE-10, locales). Antes se copiaba a
+             mano en /openmrs/data/modules del .115 y se perdia al recrear el contenedor. -->
+        <multisourceTerminologyVersion>0.1.0</multisourceTerminologyVersion>
     </properties>
 
     <dependencies>
@@ -321,6 +324,12 @@
             <version>${providerSignatureVersion}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>multisourceterminology-omod</artifactId>
+            <version>${multisourceTerminologyVersion}</version>
+        </dependency>
+
          <dependency>
             <groupId>org.openmrs.module</groupId>
             <artifactId>operationtheater-omod</artifactId>
@@ -457,6 +466,12 @@
         <repository>
             <id>ghp-provider-signature</id>
             <url>https://maven.pkg.github.com/juanjortega/openmrs-module-provider-signature</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>ghp-multisourceterminology</id>
+            <url>https://maven.pkg.github.com/juanjortega/openmrs-module-multisourceterminology</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
