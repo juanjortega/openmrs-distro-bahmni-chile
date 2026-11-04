@@ -85,6 +85,7 @@
         <!-- Diagnosticos de Bahmni como FHIR Condition (encounter-diagnosis). Antes se copiaba a mano en
              /openmrs/data/modules del .115 y se perdia al recrear el contenedor. -->
         <fhirDiagnosticosVersion>0.2.1</fhirDiagnosticosVersion>
+        <preferenciasUsuarioVersion>0.1.0</preferenciasUsuarioVersion>
         <!-- Varias terminologias en un diccionario (CIEL, SNOMED CT, CIE-10, locales). Antes se copiaba a
              mano en /openmrs/data/modules del .115 y se perdia al recrear el contenedor. -->
         <multisourceTerminologyVersion>0.1.1</multisourceTerminologyVersion>
@@ -335,6 +336,12 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
+            <artifactId>preferenciasusuario-omod</artifactId>
+            <version>${preferenciasUsuarioVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
             <artifactId>multisourceterminology-omod</artifactId>
             <version>${multisourceTerminologyVersion}</version>
         </dependency>
@@ -481,6 +488,12 @@
         <repository>
             <id>ghp-fhir-diagnosticos</id>
             <url>https://maven.pkg.github.com/juanjortega/openmrs-module-fhir-diagnosticos</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>ghp-preferencias-usuario</id>
+            <url>https://maven.pkg.github.com/juanjortega/openmrs-module-preferencias-usuario</url>
             <releases><enabled>true</enabled></releases>
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
