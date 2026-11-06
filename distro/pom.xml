@@ -79,7 +79,7 @@
              que van con version limpia.
              ================================================================ -->
         <oauth2loginVersion>1.5.0-chile-hm-1</oauth2loginVersion>
-        <eisIdentityVersion>0.1.0</eisIdentityVersion>
+        <eisIdentityVersion>0.1.1</eisIdentityVersion>
         <interconsultaVersion>0.1.0</interconsultaVersion>
         <providerSignatureVersion>0.1.0</providerSignatureVersion>
         <!-- Diagnosticos de Bahmni como FHIR Condition (encounter-diagnosis). Antes se copiaba a mano en
