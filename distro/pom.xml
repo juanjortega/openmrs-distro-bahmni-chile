@@ -23,7 +23,7 @@
         <!-- FORK CHILE: version propia publicada en GitHub Packages (juanjortega).
              Sustituye a la 1.2.0 de Bahmni; no conviven, es la misma coordenada con
              otra version, asi que el glob del Dockerfile sigue recogiendo un solo omod. -->
-        <bahmniCoreVersion>1.2.0-chile-hm-3</bahmniCoreVersion>
+        <bahmniCoreVersion>1.2.0-chile-4</bahmniCoreVersion>
         <bahmniIpdVersion>1.1.1</bahmniIpdVersion>
         <bedManagementVersion>6.0.0</bedManagementVersion>
         <calculationVersion>1.3.0</calculationVersion>
