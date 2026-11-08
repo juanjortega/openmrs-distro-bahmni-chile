@@ -71,14 +71,14 @@
         <reportingCompatibilityVersion>2.0.9</reportingCompatibilityVersion>
 
         <!-- ===================== Modulos de Chile ==========================
-             oauth2login es un FORK (lleva sufijo -chile-hm-N). Antes se colaba en
+             oauth2login es un FORK (lleva sufijo -chile-N; antes -chile-hm-N). Antes se colaba en
              la imagen por bind-mount desde el arbol de fuentes; ahora entra por
              coordenada, como el resto.
 
              Los otros tres son PROPIOS, sin upstream del que diferenciarse, asi
              que van con version limpia.
              ================================================================ -->
-        <oauth2loginVersion>1.5.0-chile-hm-1</oauth2loginVersion>
+        <oauth2loginVersion>1.5.0-chile-2</oauth2loginVersion>
         <eisIdentityVersion>0.1.0</eisIdentityVersion>
         <interconsultaVersion>0.1.0</interconsultaVersion>
         <providerSignatureVersion>0.1.0</providerSignatureVersion>
