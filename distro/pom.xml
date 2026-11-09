@@ -88,7 +88,7 @@
         <preferenciasUsuarioVersion>0.1.0</preferenciasUsuarioVersion>
         <!-- Varias terminologias en un diccionario (CIEL, SNOMED CT, CIE-10, locales). Antes se copiaba a
              mano en /openmrs/data/modules del .115 y se perdia al recrear el contenedor. -->
-        <multisourceTerminologyVersion>0.1.1</multisourceTerminologyVersion>
+        <multisourceTerminologyVersion>0.2.0</multisourceTerminologyVersion>
     </properties>
 
     <dependencies>
