@@ -78,7 +78,7 @@
              Los otros tres son PROPIOS, sin upstream del que diferenciarse, asi
              que van con version limpia.
              ================================================================ -->
-        <oauth2loginVersion>1.5.0-chile-2</oauth2loginVersion>
+        <oauth2loginVersion>1.5.0-chile-3</oauth2loginVersion>
         <eisIdentityVersion>0.1.1</eisIdentityVersion>
         <interconsultaVersion>0.1.0</interconsultaVersion>
         <providerSignatureVersion>0.1.0</providerSignatureVersion>
